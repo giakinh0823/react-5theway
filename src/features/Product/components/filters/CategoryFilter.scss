@@ -1,0 +1,8 @@
+.item {
+    display: flex;
+    justify-content: center;
+    &:hover{
+        cursor: pointer;
+        background-color: #f0f5ff;
+    }
+}

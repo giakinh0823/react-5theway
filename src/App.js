@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import 'antd/dist/antd.css';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import FooterComponent from './components/Footer';
+import HeaderComponent from './components/Header';
+import HomePageFeature from './features/HomePage';
+import ProductFeature from './features/Product';
+import { StickyContainer } from 'react-sticky';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StickyContainer>
+        <HeaderComponent />
+        <Switch>
+          <Route path="/products">
+            <ProductFeature />
+          </Route>
+          <Route path="/" exact>
+            <HomePageFeature />
+          </Route>
+        </Switch>
+        <FooterComponent />
+      </StickyContainer>
     </div>
   );
 }
