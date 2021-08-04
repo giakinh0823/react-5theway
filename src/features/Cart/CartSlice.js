@@ -16,7 +16,7 @@ export const CartSlice = createSlice({
         addToCart(state, action) {
             //newItem ={id, product, quantity}
             const newItem = action.payload;
-            const index = state.cartItems.findIndex(item => item.id === newItem.id);
+            const index = state.cartItems.findIndex(item => (item.id === newItem.id && item.size === newItem.size));
             if (index >= 0) {
                 state.cartItems[index].quantity += newItem.quantity;
             } else {

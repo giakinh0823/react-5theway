@@ -12,7 +12,7 @@ import SizeFilter from '../components/filters/SizeFilter';
 import BannerProduct from '../components/views/BannerProduct';
 import ListProduct from '../components/views/ListProduct';
 import SkeletonProduct from '../components/views/SkeletonProduct';
-import './ListPage.scss';
+import classes from './ListPage.module.scss';
 
 function ListPage(props) {
     const [products, setProducts] = useState([])
@@ -90,7 +90,7 @@ function ListPage(props) {
                 <BannerProduct />
             </div>
             <Row>
-                <Col span={6}>
+                <Col xs={{span: 0}} lg={{span: 6}}>
                     <Layout style={{
                         padding: '0 24px 24px', backgroundColor: "#fff",
                     }}>
@@ -104,7 +104,7 @@ function ListPage(props) {
                             <div>
                                 <CategoryFilter categories={categories} onChange={filterChange} filters={filters} />
                             </div>
-                            <div className="slider">
+                            <div className={classes.slider}>
                                 <PriceField onChange={filterChange} filters={filters} />
                             </div>
                             <div>
@@ -113,12 +113,12 @@ function ListPage(props) {
                         </Content>
                     </Layout>
                 </Col>
-                <Col span={18}>
+                <Col xs={{span: 24}} lg={{span: 18}}>
                     <Layout style={{
                         padding: '0 24px 24px',
                         backgroundColor: "#fff",
                     }}>
-                        <div className="header">
+                        <div className={classes.header}>
                             <Breadcrumb style={{ margin: '16px 0' }}>
                                 <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
                                 <Breadcrumb.Item>Sản phẩm</Breadcrumb.Item>
@@ -136,7 +136,7 @@ function ListPage(props) {
                             {!loading && (
                                 <>
                                     <ListProduct products={products} categories={categories} sizes={sizes} services={services} />
-                                    <div className="pagination">
+                                    <div className={classes.pagination}>
                                         <Pagination pageSizeOptions={[]} current={filters?.page} defaultPageSize={16} total={count} onChange={changePage} />
                                     </div>
                                 </>

@@ -13,8 +13,6 @@ SelectField.propTypes = {
 };
 
 SelectField.defaultProps = {
-    form: {},
-    name: "",
     label: "",
     disabled: false,
     options: [],
@@ -24,7 +22,7 @@ SelectField.defaultProps = {
 function SelectField(props) {
     const { label, form, name, onChange, disabled, options, size } = props
 
-    const [value , setValue] = useState(options[0].name)
+    const [value, setValue] = useState(options[0].name)
 
     const handleChange = (newValue) => {
         setValue(newValue)
@@ -36,15 +34,15 @@ function SelectField(props) {
                 control={form.control}
                 name={name}
                 render={({ field }) => (
-                    <Select 
-                    {...field}
-                    size={size} 
-                    defaultValue={label} 
-                    value={value}
-                    disabled={disabled} 
-                    onChange={handleChange} 
-                    style={{ minWidth: '160px' }}
-                   >
+                    <Select
+                        {...field}
+                        size={size}
+                        defaultValue={label}
+                        value={value}
+                        disabled={disabled}
+                        onChange={handleChange}
+                        style={{ minWidth: '160px' }}
+                    >
                         {options.map((option, index) => (
                             <Select.Option key={index} value={option.value}>{option.name}</Select.Option>
                         ))}

@@ -6,22 +6,26 @@ import PropTypes from 'prop-types';
 SkeletonProduct.propTypes = {
     number: PropTypes.number,
     gutter: PropTypes.number,
+    height: PropTypes.number,
+    width: PropTypes.number,
 };
 
 SkeletonProduct.defaultProps= {
     number: 12,
     gutter: 6,
+    height: 200,
+    width: 200,
 }
 
 function SkeletonProduct(props) {
-    const {number, gutter} = props
+    const {number, gutter, height, width} = props
     return (
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Row gutter={gutter}>
             {
                 [...Array(number)].map((x, i) => (
-                    <Col className="gutter-row" span={gutter} key={i}>
-                        <Skeleton.Button active="true" style={{ height: 200, width: 200 }} />
-                        <Skeleton active="true" />
+                    <Col className="gutter-row" xs={{span: 24}} sm={{span: 24}} md={{span: 12}} lg={{span: 8}} xl={{span: 6}} key={i}>
+                        <Skeleton.Button active="true" style={{ height: height, width: width }} />
+                        <Skeleton active="true"/>
                     </Col >
                 ))
             }

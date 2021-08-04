@@ -6,10 +6,11 @@ import Text from 'antd/lib/typography/Text';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { formatPrice } from '../../../../utils/common';
 import { addToCart } from '../../../Cart/CartSlice';
 import ModelDetail from './ModelDetail';
-
+import classes from './Product.module.scss'
 
 Product.propTypes = {
     product: PropTypes.object,
@@ -42,9 +43,10 @@ function Product(props) {
 
     const addToCartHandle = () => {
         const action = addToCart({
+            id: product.id,
             product: product,
             quantity: 1,
-            id: product.id,
+            size: 2,
         })
         dispatch(action)
     }
@@ -60,7 +62,9 @@ function Product(props) {
                         <Text type="secondary">{service}</Text>
                     </Row>
                     <Row>
-                        <Text>{product.title}</Text>
+                        <Link className={classes.link} to={`/products/${product.id}`}>
+                            <Text>{product.title}</Text>
+                        </Link>
                     </Row>
                     <Row>
                         <Text type="secondary">{category}</Text>

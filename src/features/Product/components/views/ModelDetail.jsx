@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal/Modal';
 import Text from 'antd/lib/typography/Text';
@@ -9,12 +9,17 @@ import { formatPrice } from '../../../../utils/common';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { addToCart } from '../../../Cart/CartSlice';
 import { useDispatch } from 'react-redux';
+import useSizes from '../../../../Hooks/useData/useSizes';
+import AddCartForm from './AddCartForm';
 
 
 ModelDetail.propTypes = {
     project: PropTypes.object,
     service: PropTypes.string,
     category: PropTypes.string,
+    handleOk:PropTypes.func,
+    handleCancel: PropTypes.func,
+    isModalVisible: PropTypes.bool,
 };
 
 ModelDetail.defaultProps = {
@@ -27,22 +32,40 @@ function ModelDetail(props) {
     const { Title } = Typography
     const { product, service, category, isModalVisible, handleOk, handleCancel } = props
     const dispatch = useDispatch();
+    const {sizes} = useSizes()
 
-    const addToCartHandle = () => {
-        const action = addToCart({
-            product: product,
-            quantity: 1,
+    const addCart = (values) => {
+        const actions = addToCart({
             id: product.id,
+            product: product,
+            ...values,
         })
-        dispatch(action)
+        dispatch(actions)
     }
+
+    const [options, setOptions] = useState([])
+
+    const getSize = (id) => {
+        const indexSize = sizes.findIndex(item => item.id === id)
+        return sizes[indexSize];
+    }
+
+    useEffect(() => {
+        const newOptions = product?.size?.length > 0 ? product?.size.map(id => {
+            const size = getSize(id)
+            return { name: size?.name, value: size?.id }
+        }) : []
+        if (newOptions.length > 0) {
+            setOptions(newOptions)
+        }
+    }, [product, sizes])
 
     return (
         <div>
             <Modal
                 title={product.title}
                 width={800}
-                style={{ top: 80 }}
+                style={{ top: 60 }}
                 visible={isModalVisible}
                 onOk={() => handleOk()}
                 onCancel={() => handleCancel()}>
@@ -74,11 +97,7 @@ function ModelDetail(props) {
                                 Cách 2: Thanh toán chuyển khoảng trước cho 5Theway (Trước khi CHUYỂN KHOẢN các bạn vui lòng nhắn tin trước cho 5Theway qua Ins hoặc FB để chúng tôi kiểm tra và xác nhận đơn hàng.)
                             </Text>
                         </Row>
-                        <Row style={{ margin: "30px 0 0 0" }}>
-                            <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={() => addToCartHandle()}>
-                                Mua ngay
-                            </Button>
-                        </Row>
+                        <AddCartForm options={options} addCart={addCart}/>
                     </Col>
                 </Row>
             </Modal>

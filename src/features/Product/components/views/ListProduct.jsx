@@ -21,7 +21,14 @@ function ListProduct(props) {
     const { products, categories, services } = props
     return (
         <List
-            grid={{ gutter: 16, column: 4 }}
+            grid={{
+                gutter: 6,
+                xs: 1,
+                sm: 1,
+                md: 2,
+                lg: 3,
+                xl: 4,
+            }}
             dataSource={products}
             renderItem={product => {
                 const indexCategory = categories.findIndex(item => item.id === product.category)

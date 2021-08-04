@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react"
-import productApi from "../../../../api/productApi"
+import productApi from "../../api/productApi"
 
 const useProductDetail = (productId) => {
     const [product, setProduct] = useState({})

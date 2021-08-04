@@ -52,7 +52,7 @@ function DiscountProduct(props) {
                         <ListProduct products={products} categories={categorys} sizes={sizes} services={services} />
                     </>
                 )}
-                {loading && <SkeletonProduct number={8} gutter={6}/>}
+                {loading && <SkeletonProduct number={8} gutter={6} height={250} width={250}/>}
             </Row>
         </div>
     );

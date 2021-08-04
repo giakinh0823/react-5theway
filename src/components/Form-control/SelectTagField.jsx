@@ -12,8 +12,6 @@ SelectTagField.propTypes = {
 };
 
 SelectTagField.defaultProps = {
-    form: {},
-    name: "",
     label: "",
     disabled: false,
     options: [],

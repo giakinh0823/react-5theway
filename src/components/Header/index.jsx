@@ -23,43 +23,47 @@ function HeaderComponent(props) {
     };
 
     return (
-        <Sticky>
-            {({
-                style,
-            }) => (
-                <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={{ ...style, zIndex: 1 }}>
-                    <Menu.Item key="homePage">
-                        <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Trang chủ</Link>
-                    </Menu.Item>
-                    <Menu.Item key="product">
-                        <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/products'>Sản phẩm</Link>
-                    </Menu.Item>
-                    <Menu.Item key="home" style={{ margin: "0 auto" }}>
-                        <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Gia Kính</Link>
-                    </Menu.Item>
-                    <Menu.Item key="login" icon={<LoginOutlined />} style={{ fontSize: "14px" }}>
-                        Đăng nhập
-                    </Menu.Item>
-                    <Menu.Item key="cart">
-                        <Popover
-                            placement="bottomRight"
-                            title={"Giỏ hàng"}
-                            content={
-                                <div>
-                                    <ListCartMini listCart={listCart} />
-                                </div>
-                            }
-                            overlayInnerStyle={{...style, left:"", right: "14px", top:"6%", maxWidth: "380px"}}
-                            trigger="click"
-                        >
-                            <Badge count={cartCount} size={"small"}>
-                                <ShoppingCartOutlined style={{ fontSize: "20px", margin: "0 6px" }} />
-                            </Badge>
-                        </Popover>
-                    </Menu.Item>
-                </Menu>
-            )}
-        </Sticky>
+        <div>
+            <Sticky>
+                {({
+                    style,
+                }) => (
+                   <div style={{ ...style, zIndex: 1 }}>
+                        <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" >
+                        <Menu.Item key="homePage">
+                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Trang chủ</Link>
+                        </Menu.Item>
+                        <Menu.Item key="product">
+                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/products'>Sản phẩm</Link>
+                        </Menu.Item>
+                        <Menu.Item key="home" style={{ margin: "0 auto" }}>
+                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Gia Kính</Link>
+                        </Menu.Item>
+                        <Menu.Item key="login" icon={<LoginOutlined />} style={{ fontSize: "14px" }}>
+                            Đăng nhập
+                        </Menu.Item>
+                        <Menu.Item key="cart">
+                            <Popover
+                                placement="bottomRight"
+                                title={"Giỏ hàng"}
+                                content={
+                                    <div>
+                                        <ListCartMini listCart={listCart} />
+                                    </div>
+                                }
+                                overlayInnerStyle={{ ...style, left: "", right: "14px", top: "6%", maxWidth: "380px" }}
+                                trigger="click"
+                            >
+                                <Badge count={cartCount} size={"small"}>
+                                    <ShoppingCartOutlined style={{ fontSize: "20px", margin: "0 6px" }} />
+                                </Badge>
+                            </Popover>
+                        </Menu.Item>
+                    </Menu>
+                   </div>
+                )}
+            </Sticky>
+        </div>
     );
 }
 

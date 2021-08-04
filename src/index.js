@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router
 } from "react-router-dom";
+import { StickyContainer } from 'react-sticky';
 import App from './App';
 import store from './app/store';
 import './index.css';
@@ -14,9 +15,11 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+      <StickyContainer>
         <React.StrictMode>
           <App />
         </React.StrictMode>
+      </StickyContainer>
     </Router>
   </Provider>,
   document.getElementById('root')

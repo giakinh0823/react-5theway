@@ -5,12 +5,10 @@ import FooterComponent from './components/Footer';
 import HeaderComponent from './components/Header';
 import HomePageFeature from './features/HomePage';
 import ProductFeature from './features/Product';
-import { StickyContainer } from 'react-sticky';
 
 function App() {
   return (
     <div className="App">
-      <StickyContainer>
         <HeaderComponent />
         <Switch>
           <Route path="/products">
@@ -21,7 +19,6 @@ function App() {
           </Route>
         </Switch>
         <FooterComponent />
-      </StickyContainer>
     </div>
   );
 }

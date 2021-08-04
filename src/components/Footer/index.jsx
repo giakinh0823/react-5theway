@@ -12,8 +12,8 @@ function FooterComponent(props) {
     const { Title } = Typography;
     return (
         <div style={{backgroundColor: "#262626", color: "#fafafa", marginTop: "40px"}}>
-            <Row style={{padding: "20px 40px 0 40px",display: "flex", justifyContent: "space-around", flexFlow: "row wrap" }}>
-                <Col span={6}>
+            <Row style={{padding: "20px 40px 0 40px",}} gutter={6}>
+                <Col sm={{span: 24}} md={{span: 12}}  lg={{span: 8}}>
                     <Title level={3} style={{color: "#fafafa",  marginBottom: "20px"}}>Giới thiệu</Title>
                     <Text style={{color: "#fafafa"}}>
                         5Theway The Shirt You Need - 5Theway được thành lập vào năm 2016, tất cả sản phẩm của 5Theway đều được tự thiết kế và sản xuất dựa theo tiêu chí chất lượng. Tất cả sản phẩm của 5Theway đều thuộc bản quyền của 5Theway
@@ -22,7 +22,7 @@ function FooterComponent(props) {
                         <img src={image} alt="" style={{ width: "60%", margin: "20px 0" }} />
                     </div>
                 </Col>
-                <Col span={6}>
+                <Col  sm={{span: 24}} md={{span: 12}}  lg={{span: 8}}>
                     <Title level={3} style={{color: "#fafafa", marginBottom: "20px"}}>Thông tin liên hệ</Title>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                         <Text style={{color: "#fafafa", fontSize:"16px"}}>
@@ -39,16 +39,16 @@ function FooterComponent(props) {
                         </Text>
                     </div>
                 </Col>
-                <Col span={6}>
+                <Col  sm={{span: 24}} md={{span: 12}} lg={{span: 8}}>
                     <Title level={3} style={{color: "#fafafa",  marginBottom: "20px"}}>Fanpge</Title>
                     <div>
                         <iframe
                             src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F5theway&tabs&width=340&height=100px&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
                             width="100%"
                             style={{ border: "none", overflow: "hidden" }}
-                            scrolling={"no"}
-                            frameborder={0}
-                            allowfullscreen={true} title="Facebook"></iframe>
+                            scrolling="no"
+                            frameBorder="0"
+                            title="Facebook"></iframe>
                     </div>
                 </Col>
             </Row>

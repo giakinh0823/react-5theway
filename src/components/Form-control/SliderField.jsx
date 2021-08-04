@@ -14,8 +14,6 @@ SliderField.propTypes = {
 };
 
 SliderField.defaultProps = {
-    form: {},
-    name: "",
     label: "",
     disabled: false,
     min: 0,
