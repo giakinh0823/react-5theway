@@ -1,7 +1,7 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller } from 'react-hook-form';
 import classes from './QuantityField.module.scss';
 

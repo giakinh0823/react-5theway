@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Col, Row, Typography } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import Text from 'antd/lib/typography/Text';
-import { Button, Col, Row } from 'antd';
-import ThumnailProduct from './ThumnailProduct';
-import { Typography } from 'antd';
-import { formatPrice } from '../../../../utils/common';
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { addToCart } from '../../../Cart/CartSlice';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useSizes from '../../../../Hooks/useData/useSizes';
+import { formatPrice } from '../../../../utils/common';
+import { addToCart } from '../../../Cart/CartSlice';
 import AddCartForm from './AddCartForm';
+import ThumnailProduct from './ThumnailProduct';
 
 
 ModelDetail.propTypes = {
@@ -70,10 +68,10 @@ function ModelDetail(props) {
                 onOk={() => handleOk()}
                 onCancel={() => handleCancel()}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    <Col span={12}>
+                    <Col xs={{span: 24}} md={{span: 12}}>
                         <ThumnailProduct product={product} />
                     </Col>
-                    <Col span={12}>
+                    <Col xs={{span: 24}} md={{span: 12}}>
                         <Row>
                             <Text style={{ fontSize: "16px" }} type="secondary">{service}</Text>
                         </Row>

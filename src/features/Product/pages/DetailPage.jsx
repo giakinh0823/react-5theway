@@ -54,11 +54,11 @@ function DetailPage(props) {
 
     return (
         <div className={classes.root}>
-            <Row gutter={16}>
-                <Col span={10}>
+            <Row gutter={{xs: 6,md: 12 ,lg: 24}}>
+                <Col xs={{span: 24}} lg={{span: 10}}>
                     <ThumnailProduct product={product}/>
                 </Col>
-                <Col span={14}>
+                <Col xs={{span: 24}} lg={{span: 14}}>
                     <ProductInfo product={product} service={service} category={category} addCart={addCart}/>
                     <AddCartForm options={options} addCart={addCart}/>
                 </Col>

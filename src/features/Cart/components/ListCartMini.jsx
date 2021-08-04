@@ -1,11 +1,10 @@
-import React from 'react';
+import { Button, Empty, Row } from 'antd';
 import PropTypes from 'prop-types';
-import { cartItemsSelector, cartItemsTotalSelector } from '../CartSelector';
-import { useSelector } from 'react-redux'
-import { List } from 'antd/lib/form/Form';
-import CartMini from './CartMini';
-import { Button, Row } from 'antd';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { formatPrice } from '../../../utils/common';
+import { cartItemsTotalSelector } from '../CartSelector';
+import CartMini from './CartMini';
 
 ListCartMini.propTypes = {
     listCart: PropTypes.array,
@@ -18,24 +17,28 @@ ListCartMini.defaultProps = {
 function ListCartMini(props) {
     const { listCart } = props
     const totalPrice = useSelector(cartItemsTotalSelector)
-    console.log(listCart)
     return (
         <div>
-            <div style={{ overflowY: 'auto', overflowX: "hidden", maxHeight: "400px"}}>
-                <ul style={{ padding: 0, margin: 0 }}>
-                    {listCart.map(item => (
-                        <CartMini cart={item} />
-                    ))}
-                </ul>
-            </div>
-            <Row style={{ justifyContent: "center", margin: "20px 0 10px 0", padding: "10px 0", borderTop: "1px solid #333", borderBottom: "1px solid #333" }}>
-                Tổng giá: {formatPrice(totalPrice)}
-            </Row>
-            <Row style={{ justifyContent: "center" }}>
-                <Button type="text" style={{ width: "100%" }}>
-                    Đi đến giỏ hàng
-                </Button>
-            </Row>
+            {listCart.length !== 0 && (
+                <div>
+                    <div style={{ overflowY: 'auto', overflowX: "hidden", maxHeight: "400px" }}>
+                        <ul style={{ padding: 0, margin: 0 }}>
+                            {listCart.map(item => (
+                                <CartMini cart={item} />
+                            ))}
+                        </ul>
+                    </div>
+                    <Row style={{ justifyContent: "center", margin: "20px 0 10px 0", padding: "10px 0", borderTop: "1px solid #333", borderBottom: "1px solid #333" }}>
+                        Tổng giá: {formatPrice(totalPrice)}
+                    </Row>
+                    <Row style={{ justifyContent: "center" }}>
+                        <Button type="text" style={{ width: "100%" }}>
+                            Đi đến giỏ hàng
+                        </Button>
+                    </Row>
+                </div>
+            )}
+            {listCart.length === 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
         </div>
     );
 }

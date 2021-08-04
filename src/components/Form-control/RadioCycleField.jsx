@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Radio } from 'antd';
-import classes from './RadioCycleField.module.scss'
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Controller } from 'react-hook-form';
+import classes from './RadioCycleField.module.scss';
 
 RadioCycleField.propTypes = {
     form: PropTypes.object.isRequired,

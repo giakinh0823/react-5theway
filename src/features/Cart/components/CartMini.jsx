@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Card, Col, Row } from 'antd';
-import ThumnailCart from './ThumnailCart';
-import { Typography } from 'antd';
-import { formatPrice } from '../../../utils/common';
+import { Col, Row, Typography } from 'antd';
 import Text from 'antd/lib/typography/Text';
+import PropTypes from 'prop-types';
+import React from 'react';
 import useCategorys from '../../../Hooks/useData/useCategorys';
 import useService from '../../../Hooks/useData/useService';
 import useSizes from '../../../Hooks/useData/useSizes';
+import { formatPrice } from '../../../utils/common';
+import ThumnailCart from './ThumnailCart';
 
 
 CartMini.propTypes = {

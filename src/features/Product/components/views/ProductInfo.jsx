@@ -1,7 +1,7 @@
 import { Row, Typography } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { formatPrice } from '../../../../utils/common';
 import classes from './ProductInfo.module.scss';
 
