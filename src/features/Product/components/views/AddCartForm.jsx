@@ -46,7 +46,7 @@ function AddCartForm(props) {
                 <Row style={{ margin: "10px 0 0 0" }}>
                     <RadioCycleField form={form} name="size" label="Size" options={options} />
                 </Row>
-                <Row>
+                <Row style={{margin: "12px 0"}}>
                     <QuantityField form={form} name="quantity" label="Quantity" />
                 </Row>
                 <Row style={{ margin: "5px 0 0 0" }}>

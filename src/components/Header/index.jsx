@@ -31,13 +31,13 @@ function HeaderComponent(props) {
                    <div style={{ ...style, zIndex: 1 }}>
                         <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" >
                         <Menu.Item key="homePage">
-                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Trang chủ</Link>
+                            <Link  style={{ color: "#434343", fontSize: "14px" }} to='/'>Trang chủ</Link>
                         </Menu.Item>
                         <Menu.Item key="product">
-                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/products'>Sản phẩm</Link>
+                            <Link style={{ color: "#434343", fontSize: "14px" }} to='/products'>Sản phẩm</Link>
                         </Menu.Item>
                         <Menu.Item key="home" style={{ margin: "0 auto" }}>
-                            <Link key={1} style={{ color: "#434343", fontSize: "14px" }} to='/'>Gia Kính</Link>
+                            <Link  style={{ color: "#434343", fontSize: "14px" }} to='/'>Gia Kính</Link>
                         </Menu.Item>
                         <Menu.Item key="login" icon={<LoginOutlined />} style={{ fontSize: "14px" }}>
                             Đăng nhập

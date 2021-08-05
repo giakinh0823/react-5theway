@@ -24,16 +24,19 @@ export const CartSlice = createSlice({
             }
         },
         setQuantity(state, action) {
-            const { id, quantity } = action.payload;
-            const index = state.cartItems.findIndex(item => item.id === id);
+            const { id, quantity, size } = action.payload;
+            const index = state.cartItems.findIndex(item => (item.id === id && item.size === size));
             if (index >= 0) {
                 state.cartItems[index].quantity = quantity;
             }
         },
-
         removeFromCart(state, action) {
-            const idNeedToRemove = action.payload;
-            state.cartItems = state.cartItems.filter((item) => item.id !== idNeedToRemove)
+            const {id, size} = action.payload;
+            const newCartItems = state.cartItems
+            const index = newCartItems.findIndex((item) => (item.id === id && item.size === size))
+            console.log(index)
+            delete newCartItems[index]
+            state.cartItems = newCartItems.filter((item) => item)
         },
     },
 })

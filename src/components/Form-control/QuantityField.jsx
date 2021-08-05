@@ -11,15 +11,17 @@ QuantityField.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     disabled: PropTypes.bool,
+    defaultValue:  PropTypes.number,
 };
 
 QuantityField.defaultProps = {
     label: "",
     disabled: false,
+    defaultValue: 0,
 };
 
 function QuantityField(props) {
-    const { form, name, disabled } = props
+    const { form, name, disabled, defaultValue } = props
     const { formState: { errors }, setValue } = form
     const hasError = errors[name]
 
@@ -33,16 +35,22 @@ function QuantityField(props) {
                         <Button
                             type="primary"
                             icon={<MinusOutlined />}
-                            onClick={() => setValue(field.name,  Number.parseInt(field.value)<=1 ? 1: Number.parseInt(field.value) - 1)}
+                            onClick={() => {
+                                if(field.value===undefined) field.value= Number.parseInt(defaultValue)
+                                setValue(field.name,  Number.parseInt(field.value)<=1 ? 1: Number.parseInt(field.value) - 1)
+                            }}
                             style={{ height: "100%"}}
                         />
                         <Input.Group size="large" style={{ width: "70px", textAlign: "center" }}>
-                            <Input {...field} disabled={disabled} defaultValue={""} />
+                            <Input {...field} disabled={disabled} defaultValue={Number.parseInt(defaultValue)} />
                         </Input.Group>
                         <Button
                             type="primary"
                             icon={<PlusOutlined />}
-                            onClick={() => setValue(field.name,  Number.parseInt(field.value) + 1)}
+                            onClick={() => {
+                                if(field.value===undefined) field.value= Number.parseInt(defaultValue)
+                                setValue(field.name,  Number.parseInt(field.value) + 1)
+                            }}
                             style={{ height: "100%"}}
                         />
                         <Text type="danger" style={{marginLeft: "10px"}}>{hasError?.message}</Text>

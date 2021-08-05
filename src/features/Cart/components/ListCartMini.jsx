@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { formatPrice } from '../../../utils/common';
 import { cartItemsTotalSelector } from '../CartSelector';
 import CartMini from './CartMini';
+import { Link } from 'react-router-dom';
+
 
 ListCartMini.propTypes = {
     listCart: PropTypes.array,
@@ -33,12 +35,24 @@ function ListCartMini(props) {
                     </Row>
                     <Row style={{ justifyContent: "center" }}>
                         <Button type="text" style={{ width: "100%" }}>
-                            Đi đến giỏ hàng
+                            <Link to="/carts">
+                                Đi đến giỏ hàng
+                            </Link>
                         </Button>
                     </Row>
                 </div>
             )}
-            {listCart.length === 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+            {listCart.length === 0 &&
+                <>
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                    <Row style={{ justifyContent: "center" }}>
+                        <Button type="text" style={{ width: "100%" }}>
+                            <Link to="/carts">
+                                Đi đến giỏ hàng
+                            </Link>
+                        </Button>
+                    </Row>
+                </>}
         </div>
     );
 }

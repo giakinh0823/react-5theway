@@ -14,11 +14,11 @@ function App() {
       <HeaderComponent />
       <ScrollToTop>
         <Switch>
-          <Route path="/carts">
-            <CartFeature />
-          </Route>
           <Route path="/products">
             <ProductFeature />
+          </Route>
+          <Route path="/carts">
+            <CartFeature />
           </Route>
           <Route path="/" exact>
             <HomePageFeature />

@@ -1,6 +1,5 @@
-import { Switch } from 'antd';
 import React from 'react';
-import { Route, useRouteMatch } from 'react-router-dom';
+import { Route, useRouteMatch, Switch } from 'react-router-dom';
 import ListPage from './pages/ListPage';
 
 CartFeature.propTypes = {
