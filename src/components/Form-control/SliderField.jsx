@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
 import { Slider } from 'antd';
@@ -23,6 +23,8 @@ SliderField.defaultProps = {
 
 function SliderField(props) {
     const {form, name, onChange, disabled, size, min, max, step } = props
+    const slider = useRef([])
+    
 
     const onChangeValue = (value) => {
         //code here
@@ -50,6 +52,7 @@ function SliderField(props) {
                         onChange={onChangeValue}
                         disabled={disabled}
                         onAfterChange={onAfterChange}
+                        ref={slider}
                     />
                 )}
             />

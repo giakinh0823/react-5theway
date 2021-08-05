@@ -1,7 +1,7 @@
-import React from 'react';
+import { Menu } from 'antd';
 import PropTypes from 'prop-types';
-import { List, Menu } from 'antd';
-import './CategoryFilter.scss'
+import React from 'react';
+import './CategoryFilter.scss';
 
 
 CategoryFilter.propTypes = {

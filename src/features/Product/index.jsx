@@ -12,8 +12,12 @@ function ProductFeature(props) {
     return (
         <div>
             <Switch>
-                <Route path={match.url} component={ListPage} exact />
-                <Route path={`${match.url}/:productId`} component={DetailPage} exact />
+                <Route path={match.url} exact>
+                    <ListPage/>
+                </Route>
+                <Route path={`${match.url}/:productId`}>
+                    <DetailPage/>
+                </Route>
             </Switch>
         </div>
     );

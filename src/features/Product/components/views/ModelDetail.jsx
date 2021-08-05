@@ -43,14 +43,9 @@ function ModelDetail(props) {
 
     const [options, setOptions] = useState([])
 
-    const getSize = (id) => {
-        const indexSize = sizes.findIndex(item => item.id === id)
-        return sizes[indexSize];
-    }
-
     useEffect(() => {
         const newOptions = product?.size?.length > 0 ? product?.size.map(id => {
-            const size = getSize(id)
+            const size = sizes[sizes.findIndex(item => item.id === id)]
             return { name: size?.name, value: size?.id }
         }) : []
         if (newOptions.length > 0) {

@@ -1,14 +1,21 @@
+import { Switch } from 'antd';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Route, useRouteMatch } from 'react-router-dom';
+import ListPage from './pages/ListPage';
 
 CartFeature.propTypes = {
-    
+
 };
 
 function CartFeature(props) {
+    const match = useRouteMatch();
     return (
         <div>
-            
+            <Switch>
+                <Route path={match.url} exact >
+                    <ListPage/>
+                </Route>
+            </Switch>
         </div>
     );
 }

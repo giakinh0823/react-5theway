@@ -1281,6 +1281,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@hookform/resolvers@^2.7.1":
+  "integrity" "sha512-dX//pnHJK9CJSz0bURQ7B84vSy1OnqJmB+ziVY4Jvc5VyL2qe0l3ol8QicCkjKxFdlOLlAds+eF0H0u8HELk5A=="
+  "resolved" "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-2.7.1.tgz"
+  "version" "2.7.1"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
   "resolved" "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz"
@@ -9803,7 +9808,7 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.9.tgz"
   "version" "6.0.9"
 
-"react-hook-form@^7.12.2":
+"react-hook-form@^7.0.0", "react-hook-form@^7.12.2":
   "integrity" "sha512-cpxocjrgpMAJCMJQR51BQhMoEx80/EQqePNihMTgoTYTqCRbd2GExi+N4GJIr+cFqrmbwNj9wxk5oLWYQsUefg=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.12.2.tgz"
   "version" "7.12.2"

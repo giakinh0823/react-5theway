@@ -46,12 +46,12 @@ function HeaderComponent(props) {
                             <Popover
                                 placement="bottomRight"
                                 title={"Giỏ hàng"}
+                                overlayStyle={{ ...style, left: "", right: "10px", top: "6%", maxWidth: "380px" }}
                                 content={
                                     <div>
                                         <ListCartMini listCart={listCart} />
                                     </div>
                                 }
-                                overlayInnerStyle={{ ...style, left: "", right: "14px", top: "6%", maxWidth: "380px" }}
                                 trigger="click"
                             >
                                 <Badge count={cartCount} size={"small"}>

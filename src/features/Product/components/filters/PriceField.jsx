@@ -48,7 +48,7 @@ function PriceField(props) {
     return (
         <div>
             <Title level={5}>Tìm kiếm theo giá</Title>
-            <SliderField form={form} min={100000} max={1000000} step={50000} onChange={changePrice}/>
+            <SliderField name="price" form={form} min={100000} max={1000000} step={50000} onChange={changePrice}/>
             <Text>{`Giá từ ${formatPrice(price.price__gte)} đến ${formatPrice(price.price__lte)}` }</Text>
         </div>
     );

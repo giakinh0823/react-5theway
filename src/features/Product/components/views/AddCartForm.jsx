@@ -5,6 +5,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import QuantityField from '../../../../components/Form-control/QuantityField';
 import RadioCycleField from '../../../../components/Form-control/RadioCycleField';
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+
 
 AddCartForm.propTypes = {
     options: PropTypes.array,
@@ -19,11 +22,18 @@ function AddCartForm(props) {
 
     const { options, addCart } = props
 
+    const schema = yup.object().shape({
+        size: yup.number().min(0,"Xin vui lòng chọn size"),
+        quantity: yup.number().min(1, "Số lượng phải lớn hơn hoặc bằng 1").required("Xin vui lòng nhập số lượng").typeError("Xin vui lòng nhập số!"),
+    });
+
+
     const form = useForm({
         defaultValues: {
-            size: 2,
+            size: -1,
             quantity: 0,
-        }
+        },
+        resolver: yupResolver(schema),
     })
 
     const onSubmit = async (values) => {

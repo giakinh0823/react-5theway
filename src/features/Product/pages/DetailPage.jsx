@@ -1,4 +1,5 @@
-import { Col, Row } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Col, Row, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -18,10 +19,12 @@ DetailPage.propTypes = {
 function DetailPage(props) {
     const match = useRouteMatch()
     const dispatch = useDispatch();
-    const {product, loading} = useProductDetail(match.params.productId)
-    const {services} = useService()
-    const {categorys} = useCategorys()
-    const {sizes} = useSizes()
+    const { product, loading } = useProductDetail(match.params.productId)
+    const { services } = useService()
+    const { categorys } = useCategorys()
+    const { sizes } = useSizes()
+    const antIcon = <LoadingOutlined style={{ fontSize: 60 }} spin/>;
+
 
     const service = services[services.findIndex(item => item.id === product.service)]?.name
     const category = categorys[categorys.findIndex(item => item.id === product.category)]?.name
@@ -37,14 +40,9 @@ function DetailPage(props) {
 
     const [options, setOptions] = useState([])
 
-    const getSize = (id) => {
-        const indexSize = sizes.findIndex(item => item.id === id)
-        return sizes[indexSize];
-    }
-
     useEffect(() => {
         const newOptions = product?.size?.length > 0 ? product?.size.map(id => {
-            const size = getSize(id)
+            const size = sizes[sizes.findIndex(item => item.id === id)]
             return { name: size?.name, value: size?.id }
         }) : []
         if (newOptions.length > 0) {
@@ -53,17 +51,27 @@ function DetailPage(props) {
     }, [product, sizes])
 
     return (
-        <div className={classes.root}>
-            <Row gutter={{xs: 6,md: 12 ,lg: 24}}>
-                <Col xs={{span: 24}} lg={{span: 10}}>
-                    <ThumnailProduct product={product}/>
-                </Col>
-                <Col xs={{span: 24}} lg={{span: 14}}>
-                    <ProductInfo product={product} service={service} category={category} addCart={addCart}/>
-                    <AddCartForm options={options} addCart={addCart}/>
-                </Col>
-            </Row>
+        <div>
+            {!loading && (
+                <div className={classes.root}>
+                    <Row gutter={{ xs: 6, md: 12, lg: 24 }}>
+                        <Col xs={{ span: 24 }} lg={{ span: 10 }}>
+                            <ThumnailProduct product={product} />
+                        </Col>
+                        <Col xs={{ span: 24 }} lg={{ span: 14 }}>
+                            <ProductInfo product={product} service={service} category={category} addCart={addCart} />
+                            <AddCartForm options={options} addCart={addCart} />
+                        </Col>
+                    </Row>
+                </div>
+            )}
+            {loading && (
+                <div className={classes.spin}>
+                    <Spin indicator={antIcon}/>
+                </div>
+            )}
         </div>
+        
     );
 }
 

@@ -1,5 +1,6 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
+import Text from 'antd/lib/typography/Text';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Controller } from 'react-hook-form';
@@ -18,8 +19,9 @@ QuantityField.defaultProps = {
 };
 
 function QuantityField(props) {
-    const { label, form, name, disabled } = props
-    const { setValue } = form
+    const { form, name, disabled } = props
+    const { formState: { errors }, setValue } = form
+    const hasError = errors[name]
 
     return (
         <div className={classes.root}>
@@ -43,6 +45,7 @@ function QuantityField(props) {
                             onClick={() => setValue(field.name,  Number.parseInt(field.value) + 1)}
                             style={{ height: "100%"}}
                         />
+                        <Text type="danger" style={{marginLeft: "10px"}}>{hasError?.message}</Text>
                     </>
                 )}
             />
