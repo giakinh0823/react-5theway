@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import StorageKeys from '../../constants/storage-keys';
 
 export const CartSlice = createSlice({
     name: 'cart',
     initialState: {
         showMiniCart: false,
-        cartItems: [],
+        cartItems: JSON.parse(localStorage.getItem(StorageKeys.cart)) || [],
     },
     reducers: {
         showMiniCart(state) {
@@ -22,6 +23,7 @@ export const CartSlice = createSlice({
             } else {
                 state.cartItems.push(newItem);
             }
+            localStorage.setItem(StorageKeys.cart, JSON.stringify(state.cartItems))
         },
         setQuantity(state, action) {
             const { id, quantity, size } = action.payload;
@@ -29,6 +31,7 @@ export const CartSlice = createSlice({
             if (index >= 0) {
                 state.cartItems[index].quantity = quantity;
             }
+            localStorage.setItem(StorageKeys.cart, JSON.stringify(state.cartItems))
         },
         removeFromCart(state, action) {
             const {id, size} = action.payload;
@@ -37,6 +40,7 @@ export const CartSlice = createSlice({
             console.log(index)
             delete newCartItems[index]
             state.cartItems = newCartItems.filter((item) => item)
+            localStorage.setItem(StorageKeys.cart, JSON.stringify(state.cartItems))
         },
     },
 })
