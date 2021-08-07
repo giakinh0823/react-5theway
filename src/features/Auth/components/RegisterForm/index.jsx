@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Form } from 'antd';
+import { Button, Form, message } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import * as yup from "yup";
 import InputField from '../../../../components/Form-control/InputField';
 import PasswordField from '../../../../components/Form-control/PasswordField';
+import UploadField from '../../../../components/Form-control/UploadField';
+
 
 
 RegisterForm.propTypes = {
@@ -28,7 +30,9 @@ function RegisterForm(props) {
         email: yup.string()
             .required("Xin vui lòng nhập email.")
             .email("Xin vui lòng nhập một email"),
-        fullName: yup.string()
+        first_name: yup.string()
+            .required("Xin vui lòng nhập tên của bạn."),
+        last_name: yup.string()
             .required("Xin vui lòng nhập tên của bạn."),
         phoneNumber: yup.number()
             .required("Xin vui lòng nhập số điện thoại"),
@@ -41,7 +45,8 @@ function RegisterForm(props) {
             repassword: "",
             email: "",
             phoneNumber: "",
-            fullName: "",
+            first_name: "",
+            last_name: "",
         },
         resolver: yupResolver(schema),
     });
@@ -56,7 +61,10 @@ function RegisterForm(props) {
         <div style={{ width: "100%" }}>
             <Form onFinish={form.handleSubmit(handleSubmit)}>
                 <div>
-                    <InputField form={form} name="fullName" label="Nhập họ và tên" />
+                    <InputField form={form} name="first_name" label="Nhập tên" />
+                </div>
+                <div>
+                    <InputField form={form} name="last_name" label="Nhập họ" />
                 </div>
                 <div>
                     <InputField form={form} name="email" label="Email" />

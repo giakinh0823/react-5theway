@@ -1,39 +1,38 @@
-  
+
 import StorageKeys from "../constants/storage-keys";
 import axiosClient from "./axiosClient";
 
 const authApi = {
-    register(data){
-        const url ='auth/';
-        return axiosClient.post(url,data);
+    register(data) {
+        const url = 'register/';
+        return axiosClient.post(url, data);
     },
-    login(data){
-        const url ='api/token/';
-        return axiosClient.post(url,data);
+    login(data) {
+        const url = '/api/token/';
+        return axiosClient.post(url, data);
     },
-    async getUser(params){
-        const newParams = { ...params}
+    async getUser(params) {
+        const newParams = { ...params }
         const accessToken = localStorage.getItem(StorageKeys.access)
-        const url ='auth/';
+        const url = `users/`;
         const response = await axiosClient.get(url, {
-            params: {...newParams},
+            params: { ...newParams },
             headers: {
-                Authorization : `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`
             }
         });
-        console.log(response)
-        const user = {...response.data[0]}
-        const responseProfile = await axiosClient.get('profile/', {
-            params: {user: user.id},
+        return response
+    },
+    async getProfile(params) {
+        const newParams = { ...params }
+        const accessToken = localStorage.getItem(StorageKeys.access)
+        const response = await axiosClient.get(`/detail/`, {
+            params: { ...newParams },
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
         })
-        const profile =  {...responseProfile.data[0]}
-        return {
-            ...profile,
-            ...user,
-        }
+        return response
     },
 }
 

@@ -1,5 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../AuthSlice';
 import Register from '../components/Register';
 
 RegisterPage.propTypes = {
@@ -8,8 +10,16 @@ RegisterPage.propTypes = {
 
 function RegisterPage(props) {
 
-    const onSubmit = (values) => {
-        console.log(values)
+    const dispatch = useDispatch();
+
+    const onSubmit = async (values) => {
+        try {
+            console.log(values)
+            const actions = register(values)
+            await dispatch(actions)
+        } catch (error) {
+            
+        }
     }
 
     return (

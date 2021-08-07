@@ -1,5 +1,5 @@
-import { ExclamationCircleOutlined, LoginOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Modal, Badge, Menu, Popover } from 'antd';
+import { ExclamationCircleOutlined, LoadingOutlined, LoginOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { Modal, Badge, Menu, Popover, Spin } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ function HeaderComponent(props) {
             await dispatch(actions)
             setVisible(false);
         } catch (error) {
-
+            console.log(error)
         }
         setConfirmLoading(false);
     }
@@ -86,7 +86,7 @@ function HeaderComponent(props) {
                             <Menu.Item key="homePage" className={classes.item}>
                                 <Link style={{ color: "#434343", fontSize: "16px" }} to='/'>Trang chủ</Link>
                             </Menu.Item>
-                            <Menu.Item key="product" className={classes.item} style={{ marginRight: "auto"}}>
+                            <Menu.Item key="product" className={classes.item} style={{ marginRight: "auto" }}>
                                 <Link style={{ color: "#434343", fontSize: "16px" }} to='/products'>Sản phẩm</Link>
                             </Menu.Item>
                             {!isLoggedIn && (
@@ -131,8 +131,10 @@ function HeaderComponent(props) {
                             width={600}
                             cancelText="Thoát"
                         >
-                            <div style={{ padding: "50px 60px 0 60px" }}>
+                            <div style={{ padding: "50px 60px 0 60px", position: "relative" }}>
                                 <Login onSubmit={onSubmit} />
+                                {confirmLoading && <Spin style={{ position: 'absolute', top: "0", left: "0", width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#ffffffa3" }} indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />}>
+                                </Spin>}
                             </div>
                         </Modal>
 

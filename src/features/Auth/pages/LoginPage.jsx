@@ -1,5 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../AuthSlice';
 import Login from '../components/Login';
 
 LoginPage.propTypes = {
@@ -7,8 +9,15 @@ LoginPage.propTypes = {
 };
 
 function LoginPage(props) {
-    const onSubmit = (values) => {
-        console.log(values)
+    const dispatch = useDispatch()
+
+    const onSubmit = async (values) => {
+        try {
+            const actions = login(values)
+            await dispatch(actions)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <div>

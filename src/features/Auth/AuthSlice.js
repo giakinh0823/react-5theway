@@ -8,10 +8,11 @@ export const register = createAsyncThunk(
     async (payload) => {
         //call api to register
         const response = await authApi.register(payload);
+        console.log(response)
         //save data to local storage
-        localStorage.setItem(StorageKeys.user, JSON.parse(response.config.data).username);
-        localStorage.setItem(StorageKeys.access, response.data.access);
-        localStorage.setItem(StorageKeys.refresh, response.data.refresh);
+        // localStorage.setItem(StorageKeys.user, JSON.parse(response.config.data).username);
+        // localStorage.setItem(StorageKeys.access, response.data.access);
+        // localStorage.setItem(StorageKeys.refresh, response.data.refresh);
         return JSON.parse(response.config.data).username;
     }
 )
@@ -20,17 +21,28 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
     'auth/login',
     async (payload) => {
-        //call api to register
-        const response = await authApi.login(payload);
-        // save data to local storage
-        await localStorage.setItem(StorageKeys.access, response.data.access);
-        await localStorage.setItem(StorageKeys.refresh, response.data.refresh);
-        const username = JSON.parse(response.config.data).username
-        console.log(username)
-        const user =  await authApi.getUser({username: username})
-        console.log(user)
-        localStorage.setItem(StorageKeys.user, JSON.stringify(user));
-        return user;
+        try {
+            const response = await authApi.login(payload);
+            console.log(response)
+            localStorage.setItem(StorageKeys.access, response.data.access);
+            localStorage.setItem(StorageKeys.refresh, response.data.refresh);
+            const username = JSON.parse(response.config.data).username
+            const responseUser = await authApi.getUser({ username: username })
+            const user = {...responseUser.data[0]}
+            console.log(responseUser)
+            const responseProfile = await authApi.getProfile({user: user.id})
+            const profile = {...responseProfile.data}
+            console.log(responseProfile)
+            const data = {
+                ...user,
+                ...profile,
+            }
+            localStorage.setItem(StorageKeys.user, JSON.stringify(data));
+            return data
+        } catch (error) {
+            console.log(error)
+            return error.message;
+        }
     }
 )
 
@@ -62,5 +74,5 @@ const AuthSlice = createSlice({
 })
 
 const { actions, reducer } = AuthSlice
-export const {logout} = actions
+export const { logout } = actions
 export default reducer
